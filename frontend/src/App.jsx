@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Header from "./components/Header.jsx";
 import { MdDeleteForever } from "react-icons/md";
@@ -10,6 +10,7 @@ function App() {
   const [FirstName, setFirstName] = useState("");
   const [LastName, setLastName] = useState("");
   const [userId, setUserId] = useState("");
+  const inputRef = useRef(null);
 
   const showTodos = async () => {
     try {
@@ -94,6 +95,9 @@ function App() {
 
   useEffect(() => {
     showTodos();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
 
   return (
@@ -102,6 +106,7 @@ function App() {
       <div>
         <form className="form-div" onSubmit={editMode ? editTodo : addtodo}>
           <input
+            ref={inputRef}
             onChange={(e) => setFirstName(e.target.value)}
             value={FirstName}
             type="text"

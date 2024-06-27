@@ -37,6 +37,9 @@ body {
   border: none;
   box-shadow: rgba(107, 202, 69, 0.35) 0px 5px 15px;
   border-radius: 5px;
+  &:focus {
+    box-shadow: rgba(153, 31, 209, 0.664) 0px 5px 15px;
+  }
 }
 .form-div .form-btn-edit {
   color: #fff;
