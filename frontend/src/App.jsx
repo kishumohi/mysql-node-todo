@@ -14,7 +14,7 @@ function App() {
 
   const showTodos = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/show/todos");
+      const { data } = await axios.get("/api/show/todos");
       setList(data);
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ function App() {
   const addtodo = async (e) => {
     e.preventDefault();
     try {
-      const add = await axios.post("http://localhost:3000/api/create/list", {
+      const add = await axios.post("/api/create/list", {
         firstName: FirstName,
         lastName: LastName,
       });
@@ -40,9 +40,7 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      const todoDelete = await axios.delete(
-        `http://localhost:3000/api/delete/todo/${id}`
-      );
+      const todoDelete = await axios.delete(`/api/delete/todo/${id}`);
       if (todoDelete.status === 200) {
         showTodos();
       }
@@ -56,9 +54,7 @@ function App() {
     setEditMode(true);
 
     try {
-      const { data } = await axios.get(
-        `http://localhost:3000/api/show/todos/${id}`
-      );
+      const { data } = await axios.get(`/api/show/todos/${id}`);
       setFirstName(data.map((d) => d.firstName));
       setLastName(data.map((d) => d.lastName));
       setUserId(data.map((d) => d.id));
